@@ -304,7 +304,14 @@
 <script>
 import Scroll from "components/common/scroll/Scroll.vue";
 export default {
+  name: 'Category',
   components: { Scroll },
+  activated() {
+    console.log('activated');
+  },
+  deactivated() {
+    console.log('deactivated');
+  },
 };
 </script>
 

@@ -15,6 +15,12 @@ export default {
         return []
       }
     }
+  },
+  methods: {
+    // imgloadList() {
+    //   // console.log("imgloadList");
+    //   this.$emit('imgloadList')
+    // }
   }
 }
 </script>
