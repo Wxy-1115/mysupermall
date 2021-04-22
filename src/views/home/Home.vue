@@ -31,7 +31,6 @@
 import NavBar from "components/common/navbar/NavBar";
 import TabControl from "components/content/tabControl/TabControl";
 import GoodsList from "components/content/goods/GoodsList";
-import BackTop from 'components/content/backTop/BackTop';
 import Scroll from 'components/common/scroll/Scroll';
 
 import HomeSwiper from "./childComps/HomeSwiper";
@@ -40,11 +39,11 @@ import Feature from "./childComps/Feature";
 
 import { getHomeMultidata, getHomeGoods } from "network/home";
 
-import {itemListenerMixin} from 'comment/mixin';
+import {itemListenerMixin, showBackTopMixin} from 'comment/mixin';
 
 export default {
   name: "Home",
-  mixins: [itemListenerMixin],
+  mixins: [itemListenerMixin, showBackTopMixin],
   components: {
     NavBar,
     TabControl,
@@ -53,7 +52,6 @@ export default {
     ReconmmendView,
     Feature,
     Scroll,
-    BackTop,
   },
   data() {
     return {
@@ -67,7 +65,6 @@ export default {
       },
       detailHeight: 0,
       currentType: "pop",
-      showBackTop: false,
       tabOffsetTop: 0,
       isFixed: false,
       saveY: 0,
@@ -98,6 +95,7 @@ export default {
     this.$refs.scroll.refresh()
     this.$refs.scroll.scroll.scrollTo(0, this.saveY, 0)
     this.$bus.$on('imgload', this.itemImageListener)
+    this.$bus.$emit('mainTabBarShow')
   },
   deactivated() {
     // console.log(this.saveY);
@@ -124,20 +122,12 @@ export default {
       this.$refs.tabControl1.currentIndex = index
       this.$refs.tabControl2.currentIndex = index
     },
-    backClick() {
-      // console.log("backClick");
-      this.$refs.scroll.scrollTo(0, 0)
-    },
     // 监听scroll滚动
     contentScroll(position) {
-      // 回到顶部显示与隐藏
-      this.showBackTop = false
-      this.saveY = position.y
-      if(position.y < -1000){
-        this.showBackTop = true
-      }
       // 判断tabControl是否吸顶
       this.isFixed = -position.y > this.tabOffsetTop
+
+      this.toBackTop(position)
     },
     // 加载更多
     loadMore() {
@@ -182,31 +172,37 @@ export default {
   /* padding-top: 44px; */
   height: 100vh;
   position: relative;
+  /* z-index: 9; */
+  overflow: hidden;
 }
 .home-nav {
   background-color: var(--color-tint);
   color: #fff;
-  /* position: fixed;
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
 
-  z-index: 9; */
+  z-index: 9;
 }
 .tab-control {
   position: relative;
+  top: 44px;
   background-color: #fff;
   z-index: 9;
 }
-/* .content{
-  height: calc(100% - 44px);
-} */
 .content{
+  position: relative;
+  top: 44px;
+  height: calc(100% - 93px);
+  overflow: hidden;
+}
+/* .content{
   overflow: hidden;
   position: absolute;
   top:44px;
   bottom: 49px;
   left: 0;
   right: 0;
-}
+} */
 </style>

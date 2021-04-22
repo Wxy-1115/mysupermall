@@ -1,0 +1,95 @@
+<template>
+  <div class="bottom-bar">
+    <div class="bar-item bar-left">
+      <div>
+        <i class="icon service"></i>
+        <span class="text">客服</span>
+      </div>
+      <div>
+        <i class="icon shop"></i>
+        <span class="text">店铺</span>
+      </div>
+      <div>
+        <i class="icon select"></i>
+        <span class="text">收藏</span>
+      </div>
+    </div>
+    <div class="bar-item bar-right">
+      <div class="cart">加入购物车</div>
+      <div class="buy">购买</div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'DetailBottomBar'
+}
+</script>
+
+<style scoped>
+
+.bottom-bar{
+  height: 49px;
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* position: fixed; */
+  /* bottom: 49px; */
+  display: flex;
+  text-align: center;
+  /* line-height: 49px; */
+}
+
+.bar-item{
+  flex: 1;
+  display: flex;
+}
+
+.bar-item div{
+  flex: 1;
+}
+
+.bar-left .text{
+  font-size: 13px;
+  position: relative;
+  top: -15px;
+}
+
+.bar-left .icon {
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin: auto 3px;
+  background: url("~assets/img/detail/detail_bottom.png") no-repeat;
+  transform: scale(0.5);
+}
+
+.bar-left .service {
+  background-position: 0 -106px;
+}
+
+.bar-left .shop {
+  background-position: 0 -200px;
+}
+.bar-left .select{
+  background-position: -3px -2px;
+}
+
+.bar-right{
+  line-height: 49px;
+}
+.bar-right .cart {
+  background-color: #ffe817;
+  color: #333;
+  font-size: 14px;
+}
+
+.bar-right .buy{
+  background-color: #f69;
+  color: #fff;
+}
+
+</style>

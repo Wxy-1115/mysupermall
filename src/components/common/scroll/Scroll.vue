@@ -32,7 +32,7 @@ export default {
       pullUpLoad: this.pullUpLoad,
       useTransition: false,
       mouseWheel: true,
-      observeDOM: true
+      // observeDOM: true
     });
     // 监听滚动位置
     if (this.probeType === 2 || this.probeType === 3) {

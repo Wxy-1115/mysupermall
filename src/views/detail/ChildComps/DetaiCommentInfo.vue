@@ -1,25 +1,37 @@
 <template>
-  <div v-if="Object.keys(commentInfo).length !== 0" class="comment-info">
-    <div class="info-header">
-      <div class="header-title">用户评价</div>
-      <div class="header-more">
-        更多
-        <i class="arrow-right"></i>
+  <div>
+    <div v-if="Object.keys(commentInfo).length !== 0" class="comment-info">
+      <div class="info-header">
+        <div class="header-title">用户评价</div>
+        <div class="header-more">
+          更多
+          <i class="arrow-right"></i>
+        </div>
+      </div>
+      <div class="info-user">
+        <img :src="commentInfo.user.avatar" alt="" />
+        <span>{{ commentInfo.user.uname }}</span>
+      </div>
+      <div class="info-detail">
+        <p>{{ commentInfo.content }}</p>
+        <div class="info-other">
+          <span class="date">{{ commentInfo.created | showDAte }}</span>
+          <span>{{ commentInfo.style }}</span>
+        </div>
+        <div class="info-imgs">
+          <img :src="item" v-for="(item, index) in commentInfo.images" />
+        </div>
       </div>
     </div>
-    <div class="info-user">
-      <img :src="commentInfo.user.avatar" alt="">
-      <span>{{commentInfo.user.uname}}</span>
-    </div>
-    <div class="info-detail">
-      <p>{{commentInfo.content}}</p>
-      <div class="info-other">
-        <span class="date">{{commentInfo.created | showDAte}}</span>
-        <span>{{commentInfo.style}}</span>
+    <div v-else class="comment-info">
+      <div class="info-header">
+        <div class="header-title">用户评价</div>
+        <div class="header-more">
+          更多
+          <i class="arrow-right"></i>
+        </div>
       </div>
-      <div class="info-imgs">
-        <img :src="item" v-for="(item, index) in commentInfo.images">
-      </div>
+      <div class="none">暂无评价</div>
     </div>
   </div>
 </template>
@@ -27,60 +39,60 @@
 <script>
 import { formatDate } from "comment/utils";
 export default {
-  name: 'DetailCommentInfo',
+  name: "DetailCommentInfo",
   props: {
     commentInfo: {
       type: Object,
       default() {
-        return {}
-      }
-    }
+        return {};
+      },
+    },
   },
   filters: {
     showDAte(value) {
-      const date = new Date(value * 1000)
-      return formatDate(date, 'yyyy/MM/dd hh:mm:ss')
-    }
-  }
-}
+      const date = new Date(value * 1000);
+      return formatDate(date, "yyyy/MM/dd hh:mm:ss");
+    },
+  },
+};
 </script>
 
 <style scoped>
-.comment-info{
+.comment-info {
   padding: 5px 12px;
   color: #333;
   border-bottom: 5px solid #f2f5f8;
 }
-.info-header{
+.info-header {
   height: 50px;
   line-height: 50px;
-  border-bottom: 3px solid rgb(0, 0, 0, .1);
+  border-bottom: 3px solid rgb(0, 0, 0, 0.1);
 }
-.header-title{
+.header-title {
   float: left;
   font-size: 15px;
 }
-.header-more{
+.header-more {
   float: right;
   font-size: 13px;
   margin-right: 10px;
 }
-.info-user{
+.info-user {
   padding: 10px 0 5px;
 }
-.info-user img{
+.info-user img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1px solid rgb(0, 0, 0, .1);
+  border: 1px solid rgb(0, 0, 0, 0.1);
 }
-.info-user span{
+.info-user span {
   margin-left: 10px;
   font-size: 15px;
   position: relative;
   top: -15px;
 }
-.info-detail{
+.info-detail {
   padding: 0 5px 15px;
 }
 .info-detail p {
@@ -103,5 +115,11 @@ export default {
   width: 70px;
   height: 70px;
   margin-right: 5px;
+}
+.none{
+  margin-bottom: 10px;
+  padding: 20px 0;
+  color: #777;
+  border-bottom: 3px solid #f2f5f8;
 }
 </style>
