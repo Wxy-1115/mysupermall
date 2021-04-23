@@ -4,10 +4,10 @@
       <template v-slot:center>购物街</template>
     </nav-bar>
     <tab-control :titles="titles" 
-                class="tab-control"
-                @tabClick="tabClick"
-                ref="tabControl1"
-                v-show="isFixed"/>
+              @tabClick="tabClick"
+              ref="tabControl1"
+              class="tab-control" 
+              v-show="isFixed"/>
     <scroll class="content" 
             ref="scroll" 
             :probe-type="3" 
@@ -126,7 +126,7 @@ export default {
     contentScroll(position) {
       // 判断tabControl是否吸顶
       this.isFixed = -position.y > this.tabOffsetTop
-
+      this.saveY = position.y
       this.toBackTop(position)
     },
     // 加载更多
@@ -170,7 +170,7 @@ export default {
 <style scoped>
 #home {
   /* padding-top: 44px; */
-  height: 100vh;
+  height: 100%;
   position: relative;
   /* z-index: 9; */
   overflow: hidden;
@@ -178,6 +178,7 @@ export default {
 .home-nav {
   background-color: var(--color-tint);
   color: #fff;
+  font-size: 18px;
   position: fixed;
   left: 0;
   right: 0;
@@ -186,15 +187,16 @@ export default {
   z-index: 9;
 }
 .tab-control {
-  position: relative;
-  top: 44px;
+  position: absolute;
+  width: 100%;
+  top: 44px; 
   background-color: #fff;
   z-index: 9;
 }
 .content{
   position: relative;
   top: 44px;
-  height: calc(100% - 93px);
+  height: calc(100vh - 93px);
   overflow: hidden;
 }
 /* .content{

@@ -16,7 +16,7 @@
       <detai-comment-info ref="comment" :comment-info="commentInfo"/>
       <goods-list ref="recommend" :goods="recommend"/>
     </scroll>
-    <detail-bottom-bar/>
+    <detail-bottom-bar @addCart="addToCart"/>
     <back-top v-show="showBackTop" @click.native="backClick"/>
   </div>
 </template>
@@ -129,6 +129,19 @@ export default {
       }
       this.toBackTop(position)
     },
+    addToCart() {
+      // 获取购物车需要展示的信息
+      const product = {}
+      product.image = this.topImages[0]
+      product.title = this.goods.title
+      product.desc = this.goods.desc
+      product.price = this.goods.realPrice
+      product.iid = this.iid
+      // console.log(product);
+      this.$store.dispatch('addCart', product).then((res) => {
+        console.log(res);
+      })
+    }
   },
   mounted() {
   },
@@ -144,7 +157,8 @@ export default {
 
   background-color: #fff;
   z-index: 9;
-  height: 100vh;
+  height: 100%;
+  /* overflow: hidden; */
 }
 
 .detail-nav{
