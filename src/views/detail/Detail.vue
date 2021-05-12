@@ -139,7 +139,7 @@ export default {
       product.iid = this.iid
       // console.log(product);
       this.$store.dispatch('addCart', product).then((res) => {
-        console.log(res);
+        this.$toast.show(res)
       })
     }
   },

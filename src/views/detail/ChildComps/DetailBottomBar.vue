@@ -66,7 +66,7 @@ export default {
 .bar-left .icon {
   display: block;
   width: 44px;
-  height: 44px;
+  height: 46px;
   margin: auto 3px;
   background: url("~assets/img/detail/detail_bottom.png") no-repeat;
   transform: scale(0.5);
@@ -80,7 +80,7 @@ export default {
   background-position: 0 -200px;
 }
 .bar-left .select{
-  background-position: 4px -2px;
+  background-position: 0 0;
 }
 
 .bar-right{

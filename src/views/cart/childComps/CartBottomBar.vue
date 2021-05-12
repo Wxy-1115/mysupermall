@@ -7,7 +7,7 @@
     <div class="price">
       合计:{{totalPrice}}
     </div>
-    <div class="calculate"> 
+    <div class="calculate" @click="buyClick"> 
       去计算:({{totalPackages}})
     </div>
   </div>
@@ -46,6 +46,11 @@ export default {
         this.cartList.forEach(item => item.checked = true)
       }else{
         this.cartList.forEach(item => item.checked = false)
+      }
+    },
+    buyClick() {
+      if(this.totalPackages == 0){
+        this.$toast.show("请选择商品")
       }
     }
   }
