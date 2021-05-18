@@ -1,5 +1,5 @@
 <template>
-  <goods-list :goods="goodsList"/>
+  <goods-list :goods="goodsList" class="category-goods-list"/>
 </template>
 
 <script>

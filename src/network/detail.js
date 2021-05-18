@@ -8,7 +8,7 @@ export function getDetail(iid) {
     }
   })
 }
-export function getRecommend(iid) {
+export function getRecommend() {
   return request2({
     url: '/recommend',
   })
