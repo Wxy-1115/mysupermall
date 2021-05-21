@@ -18,6 +18,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+  .category-goods-list .goods-item .goods-info .cfav::before{
+    content: none;
+  }
 </style>

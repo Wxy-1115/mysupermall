@@ -2,7 +2,7 @@
   <div class="register">
   <myself>
     <template v-slot:icon>
-      <img src="https://profile.csdnimg.cn/E/E/C/1_qq_33495993" class="icon">
+      <img src="~assets/img/profile/1.jpeg" class="icon">
     </template>
     <template v-slot:info class="info">
       <h3>阳光划过天际 你是否还想起我</h3>

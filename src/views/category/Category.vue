@@ -4,7 +4,7 @@
       <category-tab-content :categoryList="categoryList" 
                           @itemClick="itemClick"/>
     </scroll>
-    <scroll class="content">
+    <scroll class="content" ref="scroll">
       <category-goods-list :goodsList="categoryGoodsList"/>
     </scroll>
   </div>
@@ -28,13 +28,18 @@ export default {
     return {
       categoryList: [],
       categoryGoodsList: [],
-      maitKey: 0
+      maitKey: 3627,
+      miniWallkey: 10062603
     }
   },
   created() {
     this.getCategory()
     this.getSubCategory(this.maitKey)
-    // this.getCategoryDetail(10062603, 'pop')
+    // this.getCategoryDetail(50003, 'pop')
+  },
+  activated() { 
+    this.$refs.scroll.refresh()
+    this.$bus.$emit('mainTabBarShow')
   },
   methods: {
     itemClick(index) {
@@ -47,25 +52,21 @@ export default {
       getCategory().then((res) => {
         const goods = res.data.category
         this.categoryList = goods.list
-        this.maitKey = this.categoryList[0].maitKey
-        // console.log(this.maitKey);
-        // console.log(this.categoryList);
       })
     },
 
     getSubCategory(maitKey) {
       // 请求maitKey分类数据
       getSubCategory(maitKey).then((res) => {
-        console.log(res);
+        // console.log(res);
         this.categoryGoodsList = res.data.list
-        console.log(this.categoryGoodsList);
+        // console.log(this.categoryGoodsList);
       })
     },
 
     getCategoryDetail(miniWallkey, type) {
-
-      getCategoryDetail(miniWallkey, type).then((result) => {
-        // console.log(result);
+      getCategoryDetail(miniWallkey, type).then((res) => {
+        // console.log(res);
       })
     }
   }

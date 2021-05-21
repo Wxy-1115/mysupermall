@@ -1,7 +1,7 @@
 <template>
   <div class="profile">
     <profil-nav-bar/>
-    <scroll class="profile-scroll">
+    <scroll class="profile-scroll" ref="scroll">
       <div class="user">
         <login v-if="isLogin"/>
         <register v-else/>
@@ -50,8 +50,13 @@ export default {
     // 发送网络请求获取推荐数据
     getRecommend().then((res) => {
       this.recommend = res.data.list
+      // console.log(this.recommend);
     })
-  }
+  },
+  activated() { 
+    this.$refs.scroll.refresh()
+    this.$bus.$emit('mainTabBarShow')
+  },
 }
 </script>
 
