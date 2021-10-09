@@ -13,4 +13,5 @@ module.exports = {
       .set("comment", resolve("src/comment"))
       .set("network", resolve("src/network"));
   },
+  publicPath: './',
 }
